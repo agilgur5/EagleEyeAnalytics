@@ -26,7 +26,7 @@ FreeFlightAnalyticsRecording.ScreenRecordingModule.startRecording = function(dur
   $.ajax({
     type: 'POST',
     url: FreeFlightAnalyticsRecording.RouteMap.screenRecordingURL,
-    data: FreeFlightAnalyticsRecording.screenshotList
+    data: {framerate: framerate, screenshotList: FreeFlightAnalyticsRecording.screenshotList}
   });
 }
 

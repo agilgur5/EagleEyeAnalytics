@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <style>
+      body{
+        background-color:#fff;
+        text-align:center;
+        min-width: 500px;
+        color:#444;
+      }
+    </style>
+  </head>
+
+  <body>
+
+    <p>afsbhjdskjfhsdkjhfjakshd</p>
+    
+    <script type="text/javascript" src="jquery.min.js"></script>
+    <script type="text/javascript" src="heatcanvas-worker.js"></script>
+    <script type="text/javascript" src="heatcanvas.js"></script>
+    <script type="text/javascript" src="html2canvas.js"></script>
+    <script type="text/javascript">
+
+      $(function() {
+        html2canvas(document.body, {
+          onrendered: function(canvas) {
+            var heatmap = new HeatCanvas(canvas);
+            
+            for(var i = 0; i < 1000; i+=90) {
+              for(var j = 0; j < 1000; j+=20) {
+                heatmap.add(i, j, 5);
+              } // end for 
+            } // end for
+
+            $('body').append('<div id=\"cans\" ></div>');
+            $('#cans').append(canvas);
+
+            window.heatmap = heatmap;
+          }
+        });
+      });
+
+      //       var heatmap = createWebGLHeatmap({canvas: canvas, intensityToAlpha:true, alphaRange: [0, 0.05]}); // steep transparency
+      //       console.log(heatmap.canvas)
+
+      //       console.log(heatmap.canvas);
+      //       document.body.appendChild(heatmap.canvas);
+
+
+      //       var raf = window.requestAnimationFrame || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame || window.msRequestAnimationFrame;
+
+      //       var update = function(){
+      //         //heatmap.addPoint(100, 100, 100, 10/255);
+      //         heatmap.adjustSize(); // can be commented out for statically sized heatmaps, resize clears the map
+      //         heatmap.update(); // adds the buffered points
+      //         heatmap.display(); // adds the buffered points
+      //         //heatmap.multiply(0.9995);
+      //         //heatmap.blur();
+      //         //heatmap.clamp(0.0, 1.0); // depending on usecase you might want to clamp it
+      //         raf(update);
+      //       }
+      //       raf(update);
+
+
+      //     }
+      //   });
+      // });
+    </script>
+  </body>
+</html>

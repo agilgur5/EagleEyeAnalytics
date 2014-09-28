@@ -1,5 +1,5 @@
 // requires html2canvas
-window.FreeFlightAnalyticsRecording = FreeFlightAnalyticsRecording || {};
+var FreeFlightAnalyticsRecording = FreeFlightAnalyticsRecording || {};
 FreeFlightAnalyticsRecording.ScreenshotModule = {};
 
 // returns canvas object screenshot using html2canvas
@@ -10,3 +10,5 @@ FreeFlightAnalyticsRecording.ScreenshotModule.takeScreenshot = function() {
     }
   });
 }
+
+window.FreeFlightAnalyticsRecording = FreeFlightAnalyticsRecording;

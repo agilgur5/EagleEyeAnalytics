@@ -3,14 +3,12 @@
 // requires jQuery
 FreeFlightAnalyticsRecording.ScreenRecordingModule = {};
 
-// list of screenshot pngs to send to backend to create gifs from
-FreeFlightAnalyticsRecording.ScreenRecordingModule.screenshotList = [];
-
 /** start recording by saving a list of pngs
  *  @param duration the number of milliseconds to record for
  *  @param framerate the framerate at which to record at
  */ 
 FreeFlightAnalyticsRecording.ScreenRecordingModule.startRecording = function(duration, framerate) {
+  var screenshotList = []; // list of screenshot pngs to send to backend to create gifs from
   var endTime = Date.now() + duration;
   // take screenshots until duration has been reached
   while(Date.now() < endTime) {
@@ -18,7 +16,7 @@ FreeFlightAnalyticsRecording.ScreenRecordingModule.startRecording = function(dur
     setTimeout(function() {
       FreeFlightAnalyticsRecording.ScreenshotModule.takeScreenshot(function(canvas) {
         var image = canvas.toDataURL("image/png");
-        FreeFlightAnalyticsRecording.ScreenRecordingModule.screenshotList.push(image);
+        screenshotList.push(image);
       });
     }, 1000 / framerate);
   } // end while
@@ -27,6 +25,6 @@ FreeFlightAnalyticsRecording.ScreenRecordingModule.startRecording = function(dur
   $.ajax({
     type: 'POST',
     url: FreeFlightAnalyticsRecording.RouteMap.screenRecordingURL,
-    data: {framerate: framerate, screenshotList: FreeFlightAnalyticsRecording.screenshotList}
+    data: {framerate: framerate, screenshotList: screenshotList}
   });
 }

@@ -9,22 +9,22 @@ FreeFlightAnalyticsRecording.ScreenRecordingModule = {};
  */ 
 FreeFlightAnalyticsRecording.ScreenRecordingModule.startRecording = function(duration, framerate) {
   var screenshotList = []; // list of screenshot pngs to send to backend to create gifs from
-  var endTime = Date.now() + duration;
   // take screenshots until duration has been reached
-  while(Date.now() < endTime) {
-    // push a screenshot to the screenshot list according to the framerate
-    setTimeout(function() {
-      FreeFlightAnalyticsRecording.ScreenshotModule.takeScreenshot(function(canvas) {
-        var image = canvas.toDataURL("image/png");
-        screenshotList.push(image);
-      });
-    }, 1000 / framerate);
-  } // end while
-
-  // send data to back end
-  $.ajax({
-    type: 'POST',
-    url: FreeFlightAnalyticsRecording.RouteMap.screenRecordingURL,
-    data: {framerate: framerate, screenshotList: screenshotList}
-  });
+  // push a screenshot to the screenshot list according to the framerate
+  var intervalId = setInterval(function() {
+    FreeFlightAnalyticsRecording.ScreenshotModule.takeScreenshot(function(canvas) {
+      var image = canvas.toDataURL("image/png");
+      screenshotList.push(image);
+    });
+  }, 1000 / framerate);
+  
+  setTimeout(function() {
+    clearInterval(intervalId);
+    // send data to back end
+    $.ajax({
+      type: 'POST',
+      url: FreeFlightAnalyticsRecording.RouteMap.screenRecordingURL,
+      data: {framerate: framerate, screenshotList: screenshotList}
+    });
+  }, duration);
 }

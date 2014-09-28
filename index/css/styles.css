@@ -311,6 +311,7 @@ section {
   margin-left:0px;
   margin-right:0px;
   width:100%;
+  border-bottom:solid 1px #cccccc;
 }
 
 #top_text h1{

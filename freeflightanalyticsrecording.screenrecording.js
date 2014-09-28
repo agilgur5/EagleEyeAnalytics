@@ -16,12 +16,10 @@ FreeFlightAnalyticsRecording.ScreenRecordingModule.startRecording = function(dur
   while(Date.now() < endTime) {
     // push a screenshot to the screenshot list according to the framerate
     setTimeout(function() {
-      var canvas; 
-      FreeFlightAnalyticsRecording.ScreenshotModule.takeScreenshot(function(canvasObj) {
-        canvas = canvasObj;
+      FreeFlightAnalyticsRecording.ScreenshotModule.takeScreenshot(function(canvas) {
+        var image = canvas.toDataURL("image/png");
+        FreeFlightAnalyticsRecording.ScreenRecordingModule.screenshotList.push(image);
       });
-      var image = canvas.toDataURL("image/png");
-      FreeFlightAnalyticsRecording.ScreenRecordingModule.screenshotList.push(image);
     }, 1000 / framerate);
   } // end while
 
@@ -32,5 +30,3 @@ FreeFlightAnalyticsRecording.ScreenRecordingModule.startRecording = function(dur
     data: {framerate: framerate, screenshotList: FreeFlightAnalyticsRecording.screenshotList}
   });
 }
-
-

@@ -16,7 +16,10 @@ FreeFlightAnalyticsRecording.ScreenRecordingModule.startRecording = function(dur
   while(Date.now() < endTime) {
     // push a screenshot to the screenshot list according to the framerate
     setTimeout(function() {
-      var canvas = FreeFlightAnalyticsRecording.ScreenshotModule.takeScreenshot();
+      var canvas; 
+      FreeFlightAnalyticsRecording.ScreenshotModule.takeScreenshot(function(canvasObj) {
+        canvas = canvasObj;
+      });
       var image = canvas.toDataURL("image/png");
       FreeFlightAnalyticsRecording.ScreenRecordingModule.screenshotList.push(image);
     }, 1000 / framerate);

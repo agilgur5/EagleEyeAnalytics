@@ -2,11 +2,11 @@
 var FreeFlightAnalyticsRecording = FreeFlightAnalyticsRecording || {};
 FreeFlightAnalyticsRecording.ScreenshotModule = {};
 
-// returns canvas object screenshot using html2canvas
-FreeFlightAnalyticsRecording.ScreenshotModule.takeScreenshot = function() {
+// hits the callback with a canvas object screenshot using html2canvas
+FreeFlightAnalyticsRecording.ScreenshotModule.takeScreenshot = function(callback) {
   html2canvas(document.body, {
     onrendered: function(canvas) {
-      return canvas;
+      callback(canvas);
     }
   });
 }

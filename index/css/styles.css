@@ -8,6 +8,7 @@ body {
   font: normal 14px arial,sans-serif;
   font-family: "Open Sans", sans-serif;
   font-weight:400;
+  background-color:#fefefe;
 }
 
 .row {
@@ -246,8 +247,16 @@ section {
   width:70%;
   float:right;
   height:auto;
-  padding-bottom:30px;
 }
+
+.figure_2{
+  width:30%;
+  float:left;
+  padding-bottom:30px;
+  margin-left:10%;
+  height:auto;
+}
+
 
 #free_text{
   width:30%;
@@ -261,7 +270,7 @@ section {
 }
 
 .free_div{
-  background-color:#ffffff;
+  background-color:#fefefe;
   padding-right:0px !important;
 }
 
@@ -358,7 +367,7 @@ section {
   padding-top:5px;
 }
 
-#section3, #section6{
+#section6{
   border-top: solid 1px #bcbcbc;
 }
 
@@ -370,6 +379,12 @@ section {
   float:left;
 }
 
-#text_right{
-  text-align:right;
+#add_line{
+  border-top: solid 1px #bcbcbc;
+  padding-top:50px;
+}
+
+#right_text{
+  float:right;
+  margin-right:13%;
 }
